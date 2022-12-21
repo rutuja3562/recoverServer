@@ -40,4 +40,16 @@ router.post("/",authenticate, authorise(["Admin"]),async(req,res)=>{
 
 })
 
+router.delete("/:id",authenticate, authorise(["Admin"]), async (req, res) => {
+    try {
+      const user = await User.findByIdAndDelete(req.params.id)
+        .lean()
+        .exec();
+  
+      res.send(user);
+    } catch (err) {
+      return res.status(500).send(err.message);
+    }
+  });
+  
 module.exports = router;

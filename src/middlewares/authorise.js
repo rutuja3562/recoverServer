@@ -1,15 +1,18 @@
 // permittedRoles = ["seller", "admin"]
 
 const authorise = (permittedRoles) => {
-     console.log("111",permittedRoles)
+    //  console.log("111",permittedRoles)
     return (req,res,next) => {
         // getting the user;
         const user = req.user;
         let isPermitted = false;
 
-console.log("222",user)
+// console.log("222",user)
         // checking if he has permitted role
         permittedRoles.map(role => {
+            console.log("333",role)
+            console.log("444",user.role,role)
+
             if(user.role.includes(role)){
                 isPermitted = true;
                 console.log(permittedRoles)
