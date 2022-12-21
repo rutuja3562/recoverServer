@@ -10,7 +10,7 @@ const generateToken = (user) => {
         return jwt.sign({user}, `${process.env.SECRET_KEY}`)
 }
 
-router.get('/',authenticate , authorise(["Admin"]), async(req,res)=>{
+router.get('/', async(req,res)=>{
     try{
         const user=await User.find({}).lean().exec();
         return res.status(200).send(user)
